@@ -1,0 +1,16 @@
+# /nix/store/5214qx3s5s74fz6p00y05yc8ilcxkkg8-dune-3.16.0/bin/dune b @install
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /Users/dmmulroy/.cache/dune/db
+# Workspace root: /Users/dmmulroy/Code/personal/beatbridge
+# Auto-detected concurrency: 10
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; instrument_with = []
+#  }
+$ /nix/store/jhkr21zq5g4yd0r7avrk4jr73wv4v20b-ocaml+flambda-5.2.0/bin/ocamlc.opt -config > /var/folders/79/3sggr4k15k1ffhq61nj1p4sw0000gn/T/dune_e012c8_output
