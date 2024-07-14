@@ -22,13 +22,13 @@
   "Seamlessly transfer playlists between music streaming services")
  (depends
   dune
-  jose
+  ; jose
   ocaml
-  uri
-  serde
-  serde_derive
-  (riot
-   (>= 0.0.9)))
+  uri)
+  ; serde
+  ; serde_derive
+  ; (riot
+  ;  (>= 0.0.9)))
  (tags
   (music, ocaml, cli, learning, spotify, apple-music)))
 

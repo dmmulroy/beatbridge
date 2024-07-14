@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nix-ocaml/nix-overlays";
     riot = {
-      url = "github:emilpriver/riot";
+      url = "github:dmmulroy/riot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     serde = {
@@ -31,13 +31,10 @@
                 utop
                 ocamlformat
                 ocaml-lsp
-                inputs'.riot.packages.default
-                inputs'.serde.packages.default
                 uri
               ];
               inputsFrom = [
                 self'.packages.default
-                uri
               ];
               dontDetectOcamlConflicts = true;
             };
@@ -46,7 +43,7 @@
             default = buildDunePackage {
               inherit version;
               pname = "beatbridge";
-              propagatedBuildInputs = with ocamlPackages; [
+              buildInputs = with ocamlPackages; [
                 inputs'.riot.packages.default
                 inputs'.serde.packages.default
                 uri

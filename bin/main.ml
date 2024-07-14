@@ -1,5 +1,1 @@
-let () =
-  let _my_uri = Uri.of_string "https://www.vercel.com" in
-  ()
-;;
-
+Riot.run @@ fun () -> print_endline "Hello, Joe!"

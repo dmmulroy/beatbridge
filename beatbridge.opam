@@ -11,12 +11,8 @@ doc: "https://github.com/dmmulroy/ocaml-playlist-transfer"
 bug-reports: "https://github.com/dmmulroy/ocaml-playlist-transfer/issues"
 depends: [
   "dune" {>= "3.12"}
-  "jose"
   "ocaml"
   "uri"
-  "serde"
-  "serde_derive"
-  "riot" {>= "0.0.9"}
   "odoc" {with-doc}
 ]
 build: [
