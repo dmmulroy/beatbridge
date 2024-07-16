@@ -1,57 +1,29 @@
 {
-  description = "BeatBridge";
+  description = "Description for the project";
 
   inputs = {
-    nixpkgs.url = "github:nix-ocaml/nix-overlays";
-    riot = {
-      url = "github:dmmulroy/riot";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    serde = {
-      url = "github:serde-ml/serde";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = inputs@{ flake-parts, nixpkgs, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
-      perSystem = { config, self', inputs', pkgs, system, ... }:
-        let
-          inherit (pkgs) ocamlPackages mkShell;
-          inherit (ocamlPackages) buildDunePackage;
-          version = "0.0.1";
-        in
-        {
-          devShells = {
-            default = mkShell {
-              buildInputs = with ocamlPackages; [
-                dune_3
-                ocaml
-                utop
-                ocamlformat
-                ocaml-lsp
-                uri
-              ];
-              inputsFrom = [
-                self'.packages.default
-              ];
-              dontDetectOcamlConflicts = true;
-            };
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [];
+      systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
+      perSystem = {
+        config,
+        self',
+        inputs',
+        pkgs,
+        system,
+        ...
+      }: {
+        devShells = {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [gleam erlang_27 rebar3];
           };
-          packages = {
-            default = buildDunePackage {
-              inherit version;
-              pname = "beatbridge";
-              buildInputs = with ocamlPackages; [
-                inputs'.riot.packages.default
-                inputs'.serde.packages.default
-                uri
-              ];
-              src = ./.;
-            };
-          };
-          formatter = pkgs.alejandra;
         };
+        formatter = pkgs.alejandra;
+      };
     };
 }
