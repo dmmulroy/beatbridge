@@ -1,4 +1,19 @@
 (executable
- (public_name main)
- (name main)
+ (public_name ex1)
+ (name ex1)
+ (libraries riot))
+
+(executable
+ (public_name ex2)
+ (name ex2)
+ (libraries riot))
+
+(executable
+ (public_name ex3)
+ (name ex3)
+ (libraries riot))
+
+(executable
+ (public_name ex4)
+ (name ex4)
  (libraries riot))
