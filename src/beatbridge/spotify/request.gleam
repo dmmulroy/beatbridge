@@ -1,14 +1,14 @@
 import gleam/http.{Https}
 import gleam/http/request.{type Request}
 
+const api_host = "api.spotify.com/v1"
+
+const auth_host = "accounts.spotify.com"
+
 pub opaque type SpotifyRequest {
   ApiRequest(Request(String))
   AuthRequest(Request(String))
 }
-
-const api_host = "api.spotify.com/v1"
-
-const auth_host = "accounts.spotify.com"
 
 pub fn new_api_request() -> SpotifyRequest {
   request.new()
@@ -43,5 +43,12 @@ pub fn is_api_request(request: SpotifyRequest) -> Bool {
   case request {
     ApiRequest(_) -> True
     AuthRequest(_) -> False
+  }
+}
+
+pub fn to_http_request(request: SpotifyRequest) -> Request(String) {
+  case request {
+    ApiRequest(http_request) -> http_request
+    AuthRequest(http_request) -> http_request
   }
 }
